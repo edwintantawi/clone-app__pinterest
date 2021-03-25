@@ -1,0 +1,95 @@
+@import '../../index.scss';
+
+.navbar {
+  padding: 4px 16px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 500px) {
+    height: 70px;
+    padding: 4px 0px;
+    button {
+      padding: 8px;
+    }
+  }
+
+  &__wrapper {
+    height: 54px;
+    display: flex;
+    padding: 4px 0;
+    width: 100%;
+  }
+
+  &__left {
+    display: flex;
+    .navigation {
+      display: flex;
+      align-items: stretch;
+
+      // <=848 navigation collapse
+
+      a {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 0 16px;
+        border-radius: 30px;
+        color: $black-500;
+        margin-right: 8px;
+
+        &:not(.active):hover {
+          background-color: rgba(128, 128, 128, 0.15);
+        }
+        &.active {
+          background-color: $black-500;
+          color: white;
+        }
+      }
+    }
+  }
+
+  &__search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    &__bar {
+      display: flex;
+      flex: 1;
+      background-color: $gray-100;
+      border-radius: 50px;
+
+      @media screen and (max-width: 648px) {
+        background-color: transparent;
+        justify-content: flex-end;
+      }
+
+      form {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        padding-right: 12px;
+
+        // <=648 to be only icons
+      }
+      input {
+        flex: 1;
+        font-size: 17px;
+        color: $black-500;
+        outline: none;
+        border: none;
+        background-color: transparent;
+      }
+      button[type='submit'] {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+}
