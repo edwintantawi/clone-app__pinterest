@@ -4,7 +4,7 @@ import Today from 'pages/Today';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className='app'>
@@ -16,6 +16,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

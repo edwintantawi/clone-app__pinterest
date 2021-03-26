@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.scss';
 
-function Today() {
+const Today = () => {
   const [nowDate, setNowDate] = useState('');
   const getNow = () => {
     const date = new Date().toUTCString();
@@ -18,6 +18,6 @@ function Today() {
       <h1>Stay Inspired</h1>
     </div>
   );
-}
+};
 
 export default Today;

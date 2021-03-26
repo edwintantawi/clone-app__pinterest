@@ -9,10 +9,11 @@ import CheckIcon from '@material-ui/icons/Check';
 import './index.scss';
 import { NavLink } from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
   const [screenSize, setScreenSize] = useState();
 
   const expandParent = useRef('expandParent');
+  const expandToggler = useRef('expandToggler');
 
   useEffect(() => {
     setScreenSize(window.innerWidth);
@@ -21,10 +22,11 @@ function Navbar() {
     });
   }, []);
 
-  const closeExpand = () => {
+  const closeExpand = (e) => {
     const target = expandParent.current;
+    const targetToggler = expandToggler.current;
     target.classList.toggle('active');
-    console.info(target.classList);
+    targetToggler.classList.toggle('active');
   };
 
   return (
@@ -54,7 +56,7 @@ function Navbar() {
             </div>
           ) : (
             <div className='navigation'>
-              <a href='#' className='active' onClick={closeExpand}>
+              <a href='#' onClick={closeExpand} ref={expandToggler}>
                 Home <ExpandMoreIcon />
               </a>
               <div className='navigation__expand' ref={expandParent}>
@@ -101,6 +103,6 @@ function Navbar() {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
