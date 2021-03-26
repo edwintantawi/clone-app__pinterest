@@ -1,11 +1,20 @@
 import Navbar from 'components/Navbar';
+import Home from 'pages/Home';
+import Today from 'pages/Today';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
 function App() {
   return (
-    <div className='app'>
-      <Navbar />
-    </div>
+    <Router>
+      <div className='app'>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/today' component={Today} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

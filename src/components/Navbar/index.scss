@@ -24,6 +24,7 @@
   &__left {
     display: flex;
     .navigation {
+      position: relative;
       display: flex;
       align-items: stretch;
 
@@ -42,7 +43,7 @@
 
         @media screen and (max-width: 500px) {
           font-weight: 14px;
-          padding: 0 14px;
+          padding: 0 8px 0 16px;
           margin-right: 0;
         }
 
@@ -52,6 +53,50 @@
         &.active {
           background-color: $black-500;
           color: white;
+        }
+      }
+
+      &__expand {
+        position: absolute;
+        bottom: -95px;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+        padding: 8px;
+        width: 180px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        &.active {
+          display: flex;
+        }
+
+        a {
+          margin-right: 0;
+          // margin-bottom: 4px;
+          height: 35px;
+          border-radius: 6px;
+          display: flex;
+          justify-content: space-between;
+          .MuiSvgIcon-root {
+            visibility: hidden;
+            display: none;
+          }
+
+          &.active {
+            background-color: white;
+            color: $black-500;
+
+            &:hover {
+              background-color: rgba(128, 128, 128, 0.15);
+            }
+
+            .MuiSvgIcon-root {
+              visibility: visible;
+              display: block;
+            }
+          }
         }
       }
     }
