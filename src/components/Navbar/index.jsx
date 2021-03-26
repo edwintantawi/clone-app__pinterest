@@ -18,9 +18,9 @@ const Navbar = () => {
   const expandToggler = useRef('expandToggler');
 
   const checkPath = useCallback(() => {
-    if (location === '/' || location === '/app/') {
+    if (location === '/' || location === '/#/') {
       setLocation('Home');
-    } else if (location === '/app/today') {
+    } else if (location === '/#/today') {
       setLocation('Today');
     }
   }, [location]);

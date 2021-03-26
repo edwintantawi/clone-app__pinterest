@@ -6,7 +6,7 @@ import './App.scss';
 
 const App = () => {
   return (
-    <Router basename='app'>
+    <Router basename='#'>
       <div className='app'>
         <Navbar />
         <Switch>
