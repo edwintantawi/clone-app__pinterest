@@ -12,11 +12,5 @@ const Loader = ({ text }) => {
 
 export default Loader;
 
-// today
-{
-  /* <Loader text="Loading today's picks..." />; */
-}
-// home
-{
-  /* <Loader text="We're adding new ideas to your home feed!" />; */
-}
+// today "Loading today's picks..."
+// home "We're adding new ideas to your home feed!"

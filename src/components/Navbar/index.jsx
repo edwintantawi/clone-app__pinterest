@@ -56,9 +56,13 @@ const Navbar = () => {
             </div>
           ) : (
             <div className='navigation'>
-              <a href='#' onClick={closeExpand} ref={expandToggler}>
+              <span
+                className='expand_toggler'
+                onClick={closeExpand}
+                ref={expandToggler}
+              >
                 Home <ExpandMoreIcon />
-              </a>
+              </span>
               <div className='navigation__expand' ref={expandParent}>
                 <NavLink to='/' exact onClick={closeExpand}>
                   Home <CheckIcon />

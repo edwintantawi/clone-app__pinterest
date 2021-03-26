@@ -3,7 +3,7 @@ import './index.scss';
 const Pin = ({ image }) => {
   return (
     <div className='pin'>
-      <img src={image} className='pin__content'></img>
+      <img src={image} className='pin__content' alt='pin'></img>
     </div>
   );
 };

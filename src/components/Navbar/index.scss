@@ -30,7 +30,9 @@
 
       // <=848 navigation collapse
 
-      a {
+      a,
+      .expand_toggler {
+        cursor: pointer;
         display: flex;
         align-items: center;
         background-color: white;
@@ -74,7 +76,6 @@
 
         a {
           margin-right: 0;
-          // margin-bottom: 4px;
           height: 35px;
           border-radius: 6px;
           display: flex;
@@ -106,9 +107,9 @@
     flex: 1;
     display: flex;
     align-items: center;
-    margin-right: 6px;
+    margin: 0 6px;
     @media screen and (max-width: 500px) {
-      margin-right: 0;
+      margin: 0;
     }
     &__bar {
       display: flex;
