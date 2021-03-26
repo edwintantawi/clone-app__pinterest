@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Avatar, IconButton } from '@material-ui/core';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import SearchIcon from '@material-ui/icons/Search';
@@ -17,17 +17,26 @@ const Navbar = () => {
   const expandParent = useRef('expandParent');
   const expandToggler = useRef('expandToggler');
 
-  const checkPath = () => {
+  const checkPath = useCallback(() => {
     if (location === '/' || location === '/app/') {
       setLocation('Home');
     } else if (location === '/app/today') {
       setLocation('Today');
     }
+  }, [location]);
+
+  const closeExpand = () => {
+    checkPath();
+    const target = expandParent.current;
+    const targetToggler = expandToggler.current;
+    target.classList.toggle('active');
+    targetToggler.classList.toggle('active');
+    setLocation(window.location.pathname);
   };
 
   useEffect(() => {
     setLocation(window.location.pathname);
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     if (location === '/' || location === '/app/') {
@@ -43,15 +52,7 @@ const Navbar = () => {
     window.addEventListener('resize', () => {
       setScreenSize(window.innerWidth);
     });
-  }, []);
-
-  const closeExpand = () => {
-    checkPath();
-    const target = expandParent.current;
-    const targetToggler = expandToggler.current;
-    target.classList.toggle('active');
-    targetToggler.classList.toggle('active');
-  };
+  }, [checkPath]);
 
   return (
     <nav className='navbar'>
@@ -87,11 +88,15 @@ const Navbar = () => {
               >
                 {title} <ExpandMoreIcon />
               </span>
-              <div className='navigation__expand' ref={expandParent}>
-                <NavLink to='/' exact onClick={closeExpand}>
+              <div
+                className='navigation__expand'
+                ref={expandParent}
+                onClick={closeExpand}
+              >
+                <NavLink to='/' exact>
                   Home <CheckIcon />
                 </NavLink>
-                <NavLink to='/today' onClick={closeExpand}>
+                <NavLink to='/today'>
                   Today <CheckIcon />
                 </NavLink>
               </div>
