@@ -16,11 +16,11 @@ const Navbar = () => {
 
   const expandParent = useRef('expandParent');
   const expandToggler = useRef('expandToggler');
-
+  console.log(window.location);
   const checkPath = useCallback(() => {
-    if (location === '/' || location === '/#/') {
+    if (location === '/' || location === '') {
       setLocation('Home');
-    } else if (location === '/#/today') {
+    } else if (location === '/today') {
       setLocation('Today');
     }
   }, [location]);
@@ -31,17 +31,17 @@ const Navbar = () => {
     const targetToggler = expandToggler.current;
     target.classList.toggle('active');
     targetToggler.classList.toggle('active');
-    setLocation(window.location.pathname);
+    setLocation(window.location.hash.substr(1));
   };
 
   useEffect(() => {
-    setLocation(window.location.pathname);
+    setLocation(window.location.hash.substr(1));
   }, []);
 
   useEffect(() => {
-    if (location === '/' || location === '/app/') {
+    if (location === '/' || location === '') {
       setTitle('Home');
-    } else if (location === '/app/today') {
+    } else if (location === '/today') {
       setTitle('Today');
     }
   }, [location]);
