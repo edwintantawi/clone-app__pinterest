@@ -11,18 +11,42 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [screenSize, setScreenSize] = useState();
+  const [location, setLocation] = useState('');
+  const [title, setTitle] = useState('');
 
   const expandParent = useRef('expandParent');
   const expandToggler = useRef('expandToggler');
 
+  const checkPath = () => {
+    if (location === '/' || location === '/app/') {
+      setLocation('Home');
+    } else if (location === '/app/today') {
+      setLocation('Today');
+    }
+  };
+
   useEffect(() => {
+    setLocation(window.location.pathname);
+  }, [location]);
+
+  useEffect(() => {
+    if (location === '/' || location === '/app/') {
+      setTitle('Home');
+    } else if (location === '/app/today') {
+      setTitle('Today');
+    }
+  }, [location]);
+
+  useEffect(() => {
+    checkPath();
     setScreenSize(window.innerWidth);
     window.addEventListener('resize', () => {
       setScreenSize(window.innerWidth);
     });
   }, []);
 
-  const closeExpand = (e) => {
+  const closeExpand = () => {
+    checkPath();
     const target = expandParent.current;
     const targetToggler = expandToggler.current;
     target.classList.toggle('active');
@@ -61,7 +85,7 @@ const Navbar = () => {
                 onClick={closeExpand}
                 ref={expandToggler}
               >
-                Home <ExpandMoreIcon />
+                {title} <ExpandMoreIcon />
               </span>
               <div className='navigation__expand' ref={expandParent}>
                 <NavLink to='/' exact onClick={closeExpand}>

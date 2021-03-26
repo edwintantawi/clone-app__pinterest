@@ -2,7 +2,8 @@
   .pins__grid {
     padding: 0 12px;
     column-count: 2;
-    // column-count: 7;
+    // -webkit-column-break-after: avoid;
+    column-fill: red;
 
     @media screen and (min-width: 730px) {
       column-count: 3;
