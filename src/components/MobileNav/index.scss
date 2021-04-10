@@ -1,0 +1,39 @@
+@import '../../index.scss';
+.nav {
+  position: fixed;
+  bottom: 16px;
+  width: 100%;
+  display: none;
+
+  @media screen and (max-width: 760px) {
+    display: grid;
+    place-items: center;
+  }
+
+  &__container {
+    background-color: white;
+    padding: 0px 16px;
+    border-radius: 99px;
+
+    button.active {
+      .MuiSvgIcon-root {
+        color: $black-500;
+      }
+    }
+
+    .MuiSvgIcon-root {
+      color: $gray-200;
+      font-size: 30px;
+      margin: 2px;
+    }
+  }
+}
+
+.mobile__nav {
+  padding: 16px 16px 0;
+  display: none;
+
+  @media screen and (max-width: 760px) {
+    display: block;
+  }
+}

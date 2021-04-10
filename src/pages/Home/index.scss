@@ -1,8 +1,13 @@
 .home {
+  padding-top: 18px;
+
+  @media screen and (min-width: 760px) {
+    padding-top: 0px;
+  }
+
   .pins__grid {
     padding: 0 12px;
     column-count: 2;
-    // -webkit-column-break-after: avoid;
     column-fill: red;
 
     @media screen and (min-width: 730px) {
@@ -10,6 +15,7 @@
     }
     @media screen and (min-width: 995px) {
       columns: 4;
+      padding-top: 0px;
     }
     @media screen and (min-width: 1200px) {
       columns: 5;

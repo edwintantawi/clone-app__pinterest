@@ -3,9 +3,16 @@
 .navbar {
   padding: 4px 16px;
   height: 80px;
-  display: flex;
+  display: none;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
 
+  @media screen and (min-width: 760px) {
+    display: flex;
+  }
   @media screen and (max-width: 500px) {
     height: 70px;
     padding: 4px;
@@ -27,8 +34,6 @@
       position: relative;
       display: flex;
       align-items: stretch;
-
-      // <=848 navigation collapse
 
       a,
       .expand_toggler {
@@ -99,47 +104,6 @@
             }
           }
         }
-      }
-    }
-  }
-
-  &__search {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    margin: 0 6px;
-    @media screen and (max-width: 500px) {
-      margin: 0;
-    }
-    &__bar {
-      display: flex;
-      flex: 1;
-      background-color: $gray-100;
-      border-radius: 50px;
-
-      @media screen and (max-width: 648px) {
-        background-color: transparent;
-        justify-content: flex-end;
-      }
-
-      form {
-        display: flex;
-        align-items: stretch;
-        width: 100%;
-        padding-right: 12px;
-
-        // <=648 to be only icons
-      }
-      input {
-        flex: 1;
-        font-size: 17px;
-        color: $black-500;
-        outline: none;
-        border: none;
-        background-color: transparent;
-      }
-      button[type='submit'] {
-        visibility: hidden;
       }
     }
   }

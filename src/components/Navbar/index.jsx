@@ -1,59 +1,14 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React from 'react';
 import { Avatar, IconButton } from '@material-ui/core';
 import PinterestIcon from '@material-ui/icons/Pinterest';
-import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SmsIcon from '@material-ui/icons/Sms';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CheckIcon from '@material-ui/icons/Check';
 import './index.scss';
 import { NavLink } from 'react-router-dom';
+import SearchBar from 'components/SearchBar';
 
 const Navbar = () => {
-  const [screenSize, setScreenSize] = useState();
-  const [location, setLocation] = useState('');
-  const [title, setTitle] = useState('');
-
-  const expandParent = useRef('expandParent');
-  const expandToggler = useRef('expandToggler');
-  console.log(window.location);
-  const checkPath = useCallback(() => {
-    if (location === '/' || location === '') {
-      setLocation('Home');
-    } else if (location === '/today') {
-      setLocation('Today');
-    }
-  }, [location]);
-
-  const closeExpand = () => {
-    checkPath();
-    const target = expandParent.current;
-    const targetToggler = expandToggler.current;
-    target.classList.toggle('active');
-    targetToggler.classList.toggle('active');
-    setLocation(window.location.hash.substr(1));
-  };
-
-  useEffect(() => {
-    setLocation(window.location.hash.substr(1));
-  }, []);
-
-  useEffect(() => {
-    if (location === '/' || location === '') {
-      setTitle('Home');
-    } else if (location === '/today') {
-      setTitle('Today');
-    }
-  }, [location]);
-
-  useEffect(() => {
-    checkPath();
-    setScreenSize(window.innerWidth);
-    window.addEventListener('resize', () => {
-      setScreenSize(window.innerWidth);
-    });
-  }, [checkPath]);
-
   return (
     <nav className='navbar'>
       <div className='navbar__wrapper'>
@@ -64,61 +19,20 @@ const Navbar = () => {
               <PinterestIcon style={{ color: '#e60023', fontSize: 28 }} />
             </IconButton>
           </a>
-          {screenSize >= 848 ? (
-            <div className='navigation'>
-              <NavLink
-                to='/'
-                //${screenSize >= 848 ? 'active' : null}
-                activeClassName='active'
-                exact
-              >
-                Home {screenSize >= 848 ? null : <ExpandMoreIcon />}
-              </NavLink>
+          <div className='navigation'>
+            <NavLink to='/' activeClassName='active' exact>
+              Home
+            </NavLink>
 
-              <NavLink to='/today' activeClassName='active'>
-                Today
-              </NavLink>
-            </div>
-          ) : (
-            <div className='navigation'>
-              <span
-                className='expand_toggler'
-                onClick={closeExpand}
-                ref={expandToggler}
-              >
-                {title} <ExpandMoreIcon />
-              </span>
-              <div
-                className='navigation__expand'
-                ref={expandParent}
-                onClick={closeExpand}
-              >
-                <NavLink to='/' exact>
-                  Home <CheckIcon />
-                </NavLink>
-                <NavLink to='/today'>
-                  Today <CheckIcon />
-                </NavLink>
-              </div>
-            </div>
-          )}
-        </div>
-        {/* NAVBAR-SEARCH */}
-        <div className='navbar__search'>
-          <div className='navbar__search__bar'>
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
-            {screenSize >= 648 ? (
-              <form>
-                <input type='text' placeholder='Search' />
-                <button type='submit'></button>
-              </form>
-            ) : null}
+            <NavLink to='/today' activeClassName='active'>
+              Today
+            </NavLink>
           </div>
         </div>
-
+        {/* NAVBAR-SEARCH */}
+        <SearchBar />
         {/* NAVBAR-RIGHT */}
+
         <div className='navbar__right'>
           <IconButton>
             <NotificationsIcon />

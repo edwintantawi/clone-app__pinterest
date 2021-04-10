@@ -8,6 +8,16 @@
     animation: rotate 1s infinite linear;
     margin-top: 32px;
   }
+
+  a {
+    display: inline-block;
+    color: white;
+    background-color: $black-500;
+    padding: 12px 42px;
+    text-decoration: none;
+    margin-top: 32px;
+    border-radius: 12px;
+  }
 }
 
 @keyframes rotate {
